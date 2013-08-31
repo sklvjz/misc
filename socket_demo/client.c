@@ -14,7 +14,8 @@ int main(int argc, char *argv[])
 	char buffer[1024]={0};   
 	struct sockaddr_in s_add,c_add;
 	unsigned short portnum = 8888; 
-	printf("Hello,welcome to client !\r\n");
+
+    printf("Client pid is %d\n",getpid());
 
 	cfd = socket(AF_INET, SOCK_STREAM, 0);
 	if(-1 == cfd)
@@ -22,7 +23,6 @@ int main(int argc, char *argv[])
 		printf("socket fail ! \r\n");
 		return -1;
 	}
-	printf("socket ok !\r\n");
 
 	bzero(&s_add,sizeof(struct sockaddr_in));
 	s_add.sin_family=AF_INET;
@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
 	printf("read ok\r\nREC:\r\n");
 	buffer[recbytes]='\0';
 	printf("%s\r\n",buffer);
-	getchar();
 	close(cfd);
 	return 0;
 }
